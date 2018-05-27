@@ -1,0 +1,22 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dev
+  server:
+    build: .
+    volumes:
+      - .:/usr/app/
+    ports:
+      - '8000:8000'
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgres://voting@postgres/voting
+    depends_on:
+      - postgres
+    command: ['yarn', 'db:migrate']
