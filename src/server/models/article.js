@@ -1,8 +1,15 @@
+import SequelizeSlugify from 'sequelize-slugify'
+
 const ArticleModel = (sequelize, DataTypes) => {
   const Article = sequelize.define('Article', {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+    },
+
+    slug: {
+      type: DataTypes.STRING,
       unique: true,
     },
 
@@ -15,6 +22,10 @@ const ArticleModel = (sequelize, DataTypes) => {
       defaultValue: true,
     },
 
+  })
+
+  SequelizeSlugify.slugifyModel(Article, {
+    source: ['title'],
   })
 
   return Article

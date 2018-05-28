@@ -17,6 +17,19 @@ class ArticleController {
       .then(article => res.status(200).send(article))
       .catch(error => res.status(400).send(error.toString()))
   }
+  static retrieve(req, res) {
+    return Article
+      .findOne({ where: { slug: req.params.articleSlug } })
+      .then(article => {
+        if (!article) {
+          return res.status(404).send({
+            message: 'Article not found',
+          })
+        }
+        res.status(200).send(article)
+      })
+      .catch(error => res.status(400).send(error.toString()))
+  }
 }
 
 export default ArticleController
