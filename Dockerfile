@@ -1,10 +1,8 @@
 FROM node:latest
 
-WORKDIR /usr/src/app
+ENV HOME=/home/app
+WORKDIR $HOME/geode
 
-COPY package*.json .
-RUN yarn
-
-COPY . .
+COPY . $HOME/geode
 
 EXPOSE 8000

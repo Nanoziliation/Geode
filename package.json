@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "boot": "yarn db:migrate",
+    "boot": "yarn db:migrate && yarn start",
     "start": "yarn dev:start",
     "lint": "eslint src test",
     "test": "nyc --reporter=text mocha --recursive --exit",

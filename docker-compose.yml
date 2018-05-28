@@ -11,12 +11,12 @@ services:
   server:
     build: .
     volumes:
-      - .:/usr/app/
+      - .:/home/app/geode
     ports:
       - '8000:8000'
     environment:
       NODE_ENV: development
-      DATABASE_URL: postgres://voting@postgres/voting
+      DATABASE_URL: postgres://admin:password@postgres/dev
     depends_on:
       - postgres
-    command: ['yarn', 'db:migrate']
+    command: ['yarn', 'boot']
