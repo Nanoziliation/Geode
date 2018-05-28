@@ -22,6 +22,11 @@ const ArticleModel = (sequelize, DataTypes) => {
       defaultValue: true,
     },
 
+   updatedAt: {
+     type: DataTypes.DATE,
+     allowNull: false,
+   },
+
   })
 
   SequelizeSlugify.slugifyModel(Article, {
